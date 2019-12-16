@@ -1,0 +1,57 @@
+package August.day12;
+
+/**
+ * @题目 ：177. Nth Highest Salary
+ * @Data: 19/8/20
+ * @题目描述：
+ * <p>
+ * Write a SQL query to get the nth highest salary from the Employee table.
+
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+For example, given the above Employee table, the nth highest salary where n = 2 is 200. If there is no nth highest salary, then the query should return null.
+
++------------------------+
+| getNthHighestSalary(2) |
++------------------------+
+| 200                    |
++------------------------+
+ * @题目地址： 链接：https://leetcode-cn.com/problems/second-highest-salary/
+ * @示例1: ######
+ * @示例2: ###
+ * @示例3: ###
+ **/
+
+ CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  DECLARE P1 INT; -- 第P1高的薪水
+    DECLARE P2 INT; -- 取P1-1后的P2个值
+    -- 当N<1时，P1会为负数，采用IF调整为0，另此时结果不存在，设置P2为0
+    IF (N<1)
+      THEN SET P1 = 0, P2 = 0;
+    ELSE SET P1 = N-1, P2 = 1;
+    END IF;
+
+    RETURN (
+        -- 若不存在第N高的薪水，取NULL
+        SELECT IFNULL(
+            (
+                -- 去除重复值，倒序取第P1大的值后P2个值
+               SELECT DISTINCT Salary
+                FROM Employee
+                ORDER BY Salary DESC
+                LIMIT P1, P2
+            ), NULL
+        ) AS SecondHighestSalary
+    );
+
+-- 作者：rotcod-wang
+-- 链接：https://leetcode-cn.com/problems/nth-highest-salary/solution/jing-que-da-an-han-zhu-shi-kao-lu-nbu-he-li-qing-k/
+-- 来源：力扣（LeetCode）
+-- 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+END

@@ -1,0 +1,58 @@
+package August.day12;
+
+/**
+ * @题目 ：176. Second Highest Salary
+ * @Data: 19/8/20
+ * @题目描述：
+ * <p>
+ * Write a SQL query to get the second highest salary from the Employee table.
+
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+For example, given the above Employee table, the query should return 200 as the second highest salary. If there is no second highest salary, then the query should return null.
+
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+
+ * @题目地址： 链接：https://leetcode-cn.com/problems/second-highest-salary/
+ * @示例1: ######
+ * @示例2: ###
+ * @示例3: ###
+ **/
+
+
+SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1),
+    NULL) AS SecondHighestSalary
+
+-- # 作者：LeetCode
+-- # 链接：https://leetcode-cn.com/problems/second-highest-salary/solution/di-er-gao-de-xin-shui-by-leetcode/
+-- # 来源：力扣（LeetCode）
+-- # 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+select max(Salary) as SecondHighestSalary
+from Employee
+where Salary < (
+    select max(Salary) from Employee
+);
+
+-- 作者：little_bird
+-- 链接：https://leetcode-cn.com/problems/second-highest-salary/solution/di-er-gao-de-xin-shui-liang-chong-jie-fa-by-little/
+-- 来源：力扣（LeetCode）
+-- 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
