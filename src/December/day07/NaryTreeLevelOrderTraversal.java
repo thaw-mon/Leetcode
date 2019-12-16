@@ -1,19 +1,65 @@
 package December.day07;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
- * @题目 ：427. Construct Quad Tree
- * @Data 19/12/12
- * @题目描述： We want to use quad trees to store an N x N boolean grid. Each cell in the grid can only be true or false. The root node represents the whole grid. For each node, it will be subdivided into four children nodes until the values in the region it represents are all the same.
+ * @题目 ：429. N-ary Tree Level Order Traversal
+ * @Data 19/12/16
+ * @题目描述： Given an n-ary tree, return the level order traversal of its nodes' values.
  * <p>
- * Each node has another two boolean attributes : isLeaf and val. isLeaf is true if and only if the node is a leaf node. The val attribute for a leaf node contains the value of the region it represents.
- * <p>
- * Your task is to use a quad tree to represent a given grid. The following example may help you understand the problem better:
- * <p>
- * Given the 8 x 8 grid below, we want to construct the corresponding quad tree:
- * @题目链接： 链接：https://leetcode-cn.com/problems/construct-quad-tree
+ * Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).
+ * @题目链接： 链接：https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal
  * @示例1: ######
+ * Input: root = [1,null,3,2,4,null,5,6]
+ * Output: [[1],[3,2,4],[5,6]]
  * @示例2: ######
+ * Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+ * Output: [[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
  * @示例3: ###
  */
 public class NaryTreeLevelOrderTraversal {
+    // Definition for a Node.
+    class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    }
+
+    ;
+
+    //对n叉树进行层次遍历：easy
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int n = queue.size();
+            List<Integer> levelData = new ArrayList<>(); //表示一层节点的数据
+            while (n > 0) {
+                Node temp = queue.poll();
+                levelData.add(temp.val);
+                for (Node node : temp.children) {
+                    queue.add(node);
+                }
+                n--;
+            }
+            res.add(levelData);
+        }
+        return res;
+    }
 }
