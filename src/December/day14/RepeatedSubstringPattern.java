@@ -34,4 +34,23 @@ public class RepeatedSubstringPattern {
         return str.contains(s);
 
     }
+
+    //上面的解法很有技巧性：现在加一种常规思路
+
+    public boolean repeatedSubstringPattern2(String s) {
+        /** i代表周期  第一个周期是 [0，i）*/
+        for (int i = 1; i <= s.length() / 2 ; i ++) {
+            if (s.length() % i != 0)
+                continue;
+            /** j代表下标 从 0 + i开始 而不是从 1 + i 开始 */
+            /** j应该从i开始 而不是i + 1 */
+            for (int j = i; j < s.length(); j ++) {
+                if (s.charAt(j % i) != s.charAt(j))
+                    break;
+                if (j == s.length() - 1)
+                    return true;
+            }
+        }
+        return false;
+    }
 }
