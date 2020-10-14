@@ -11,5 +11,6 @@ public class Demo02 {
      */
     public int countLR (int[] a, int[] b) {
         // write code here
+        return  0;
     }
 }
