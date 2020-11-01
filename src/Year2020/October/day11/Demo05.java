@@ -106,7 +106,7 @@ public class Demo05 {
 
     //
     private boolean isValidIp(String ip) {
-        String[] array = ip.split(".");
+        String[] array = ip.split("\\.");
         if (!ip.matches("\\d+\\.\\d+\\.\\d+\\.\\d+")) return false;
         //判定每个数字是否在[0-255]
         for (String s : array) {
