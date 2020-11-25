@@ -1,0 +1,35 @@
+S001:Initialization is successful
+S002:Pay success,balance=10
+S002:Pay success,balance=20
+S003:Buy success,balance=16
+1 yuan coin number=1
+2 yuan coin number=0
+5 yuan coin number=1
+10 yuan coin number=1
+E008:Lack of balance
+E010:Parameter errorS002:Pay success,balance=10
+S002:Pay success,balance=15
+1 yuan coin number=0
+2 yuan coin number=0
+5 yuan coin number=1
+10 yuan coin number=1
+S002:Pay success,balance=1
+E008:Lack of balance
+E010:Parameter errorS001:Initialization is successful
+E003:Change is not enough, pay fail
+E009:Work failureE009:Work failureS002:Pay success,balance=2
+1 yuan coin number=0
+2 yuan coin number=1
+5 yuan coin number=0
+10 yuan coin number=0
+E008:Lack of balance
+E009:Work failureE010:Parameter errorE010:Parameter errorS002:Pay success,balance=2
+E008:Lack of balance
+S002:Pay success,balance=7
+E010:Parameter error1 yuan coin number=0
+2 yuan coin number=1
+5 yuan coin number=1
+10 yuan coin number=0
+E010:Parameter errorE010:Parameter errorE010:Parameter errorE009:Work failureE009:Work failureE003:Change is not enough, pay fail
+S002:Pay success,balance=1
+E010:Parameter error
